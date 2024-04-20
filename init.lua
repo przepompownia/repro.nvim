@@ -34,7 +34,7 @@ pluginsPath = vim.uv.fs_realpath(pluginsPath)
 
 --- @type table<string, {url:string, branch: string?}>
 local plugins = {
-  [''] = {url = ''},
+  -- [''] = {url = ''},
 }
 
 for name, repo in pairs(plugins) do
