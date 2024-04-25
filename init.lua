@@ -30,7 +30,7 @@ local function gitClone(url, installPath, branch)
   vim.notify(sysObj.stderr, vim.log.levels.WARN)
 end
 
-local pluginsPath = 'nvim/pack/plugins/opt'
+local pluginsPath = vim.fs.joinpath(configDir, 'nvim/pack/plugins/opt')
 vim.fn.mkdir(pluginsPath, 'p')
 pluginsPath = vim.uv.fs_realpath(pluginsPath)
 
