@@ -1,10 +1,12 @@
 local thisInitFile = debug.getinfo(1).source:match('@?(.*)')
-local configDir = vim.fs.dirname(thisInitFile)
+local cwd = vim.fs.dirname(thisInitFile)
+local appname = vim.env.NVIM_APPNAME or 'nvim'
 
-vim.env['XDG_CONFIG_HOME'] = configDir
-vim.env['XDG_DATA_HOME'] = vim.fs.joinpath(configDir, '.xdg', 'data')
-vim.env['XDG_STATE_HOME'] = vim.fs.joinpath(configDir, '.xdg', 'state')
-vim.env['XDG_CACHE_HOME'] = vim.fs.joinpath(configDir, '.xdg', 'cache')
+vim.env.XDG_CONFIG_HOME = cwd
+vim.env.XDG_DATA_HOME = vim.fs.joinpath(cwd, '.xdg', 'data')
+vim.env.XDG_STATE_HOME = vim.fs.joinpath(cwd, '.xdg', 'state')
+vim.env.XDG_CACHE_HOME = vim.fs.joinpath(cwd, '.xdg', 'cache')
+vim.fn.mkdir(vim.fs.joinpath(vim.env.XDG_CACHE_HOME, appname), 'p')
 local stdPathConfig = vim.fn.stdpath('config')
 
 vim.opt.runtimepath:prepend(stdPathConfig)
@@ -30,7 +32,7 @@ local function gitClone(url, installPath, branch)
   vim.notify(sysObj.stderr, vim.log.levels.WARN)
 end
 
-local pluginsPath = vim.fs.joinpath(configDir, 'nvim/pack/plugins/opt')
+local pluginsPath = vim.fs.joinpath(cwd, 'nvim/pack/plugins/opt')
 vim.fn.mkdir(pluginsPath, 'p')
 pluginsPath = vim.uv.fs_realpath(pluginsPath)
 
