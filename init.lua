@@ -12,6 +12,11 @@ local stdPathConfig = vim.fn.stdpath('config')
 vim.opt.runtimepath:prepend(stdPathConfig)
 vim.opt.packpath:prepend(stdPathConfig)
 
+local extuiExists, extui = pcall(require, 'vim._extui')
+if extuiExists then
+  extui.enable({enable = true, msg = {target = 'msg'}})
+end
+
 local function gitClone(url, installPath, branch)
   if vim.fn.isdirectory(installPath) ~= 0 then
     return
