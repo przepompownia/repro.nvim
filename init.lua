@@ -44,8 +44,8 @@ local plugins = {
 for name, repo in pairs(plugins) do
   local installPath = vim.fs.joinpath(pluginsPath, name)
   gitClone(repo.url, installPath, repo.branch)
-  -- vim.opt.runtimepath:append(installPath)
-  vim.cmd.packadd({args = {name}, bang = true})
+  vim.opt.runtimepath:append(installPath)
+  -- vim.cmd.packadd({args = {name}, bang = true})
 end
 
 local function init()
