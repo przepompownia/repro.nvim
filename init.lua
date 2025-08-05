@@ -39,7 +39,7 @@ end
 
 local pluginsPath = vim.fs.joinpath(cwd, 'nvim/pack/plugins/opt')
 vim.fn.mkdir(pluginsPath, 'p')
-pluginsPath = vim.uv.fs_realpath(pluginsPath)
+pluginsPath = assert(vim.uv.fs_realpath(pluginsPath))
 
 --- @type table<string, {url:string, branch: string?}>
 local plugins = {
