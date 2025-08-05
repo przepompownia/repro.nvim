@@ -1,4 +1,4 @@
-local thisInitFile = debug.getinfo(1).source:match('@?(.*)')
+local thisInitFile = debug.getinfo(1).source:sub(2)
 local cwd = vim.fs.dirname(thisInitFile)
 local appname = vim.env.NVIM_APPNAME or 'nvim'
 
